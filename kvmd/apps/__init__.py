@@ -369,16 +369,16 @@ def _get_config_scheme() -> Dict:
             "info": {  # Accessed via global config, see kvmd/info for details
                 "meta":   Option("/etc/kvmd/meta.yaml",    type=valid_abs_file),
                 "extras": Option("/usr/share/kvmd/extras", type=valid_abs_dir),
-                "hw": {
-                    "vcgencmd_cmd":  Option(["/opt/vc/bin/vcgencmd"], type=valid_command),
-                    "state_poll":    Option(10.0,  type=valid_float_f01),
-                },
-                "fan": {
-                    "daemon":     Option("kvmd-fan", type=valid_stripped_string),
-                    "unix":       Option("",  type=valid_abs_path, if_empty="", unpack_as="unix_path"),
-                    "timeout":    Option(5.0, type=valid_float_f01),
-                    "state_poll": Option(5.0, type=valid_float_f01),
-                },
+                # "hw": {
+                #     "vcgencmd_cmd":  Option(["/opt/vc/bin/vcgencmd"], type=valid_command),
+                #     "state_poll":    Option(10.0,  type=valid_float_f01),
+                # },
+                # "fan": {
+                #     "daemon":     Option("kvmd-fan", type=valid_stripped_string),
+                #     "unix":       Option("",  type=valid_abs_path, if_empty="", unpack_as="unix_path"),
+                #     "timeout":    Option(5.0, type=valid_float_f01),
+                #     "state_poll": Option(5.0, type=valid_float_f01),
+                # },
             },
 
             "hid": {
@@ -635,10 +635,10 @@ def _get_config_scheme() -> Dict:
                 "tls": {
                     "ciphers": Option("ALL:@SECLEVEL=0", type=valid_ssl_ciphers, if_empty=""),
                     "timeout": Option(30.0, type=valid_float_f01),
-                    "x509": {
-                        "cert": Option("/etc/kvmd/vnc/ssl/server.crt", type=valid_abs_file, if_empty=""),
-                        "key":  Option("/etc/kvmd/vnc/ssl/server.key", type=valid_abs_file, if_empty=""),
-                    },
+                    # "x509": {
+                    #     "cert": Option("/etc/kvmd/vnc/ssl/server.crt", type=valid_abs_file, if_empty=""),
+                    #     "key":  Option("/etc/kvmd/vnc/ssl/server.key", type=valid_abs_file, if_empty=""),
+                    # },
                 },
             },
 
@@ -675,32 +675,32 @@ def _get_config_scheme() -> Dict:
             },
         },
 
-        "janus": {
-            "stun": {
-                "host":          Option("stun.l.google.com", type=valid_ip_or_host, unpack_as="stun_host"),
-                "port":          Option(19302, type=valid_port, unpack_as="stun_port"),
-                "timeout":       Option(5.0,   type=valid_float_f01, unpack_as="stun_timeout"),
-                "retries":       Option(5,     type=valid_int_f1, unpack_as="stun_retries"),
-                "retries_delay": Option(5.0,   type=valid_float_f01, unpack_as="stun_retries_delay"),
-            },
-
-            "check": {
-                "interval":      Option(10.0, type=valid_float_f01, unpack_as="check_interval"),
-                "retries":       Option(5,    type=valid_int_f1, unpack_as="check_retries"),
-                "retries_delay": Option(5.0,  type=valid_float_f01, unpack_as="check_retries_delay"),
-            },
-
-            "cmd": Option([
-                "/usr/bin/janus",
-                "--disable-colors",
-                "--plugins-folder=/usr/lib/ustreamer/janus",
-                "--configs-folder=/etc/kvmd/janus",
-                "--interface={src_ip}",
-                "--stun-server={stun_host}:{stun_port}",
-            ], type=valid_command),
-            "cmd_remove": Option([], type=valid_options),
-            "cmd_append": Option([], type=valid_options),
-        },
+        # "janus": {
+        #     "stun": {
+        #         "host":          Option("stun.l.google.com", type=valid_ip_or_host, unpack_as="stun_host"),
+        #         "port":          Option(19302, type=valid_port, unpack_as="stun_port"),
+        #         "timeout":       Option(5.0,   type=valid_float_f01, unpack_as="stun_timeout"),
+        #         "retries":       Option(5,     type=valid_int_f1, unpack_as="stun_retries"),
+        #         "retries_delay": Option(5.0,   type=valid_float_f01, unpack_as="stun_retries_delay"),
+        #     },
+        #
+        #     "check": {
+        #         "interval":      Option(10.0, type=valid_float_f01, unpack_as="check_interval"),
+        #         "retries":       Option(5,    type=valid_int_f1, unpack_as="check_retries"),
+        #         "retries_delay": Option(5.0,  type=valid_float_f01, unpack_as="check_retries_delay"),
+        #     },
+        #
+        #     "cmd": Option([
+        #         "/usr/bin/janus",
+        #         "--disable-colors",
+        #         "--plugins-folder=/usr/lib/ustreamer/janus",
+        #         "--configs-folder=/etc/kvmd/janus",
+        #         "--interface={src_ip}",
+        #         "--stun-server={stun_host}:{stun_port}",
+        #     ], type=valid_command),
+        #     "cmd_remove": Option([], type=valid_options),
+        #     "cmd_append": Option([], type=valid_options),
+        # },
 
         "watchdog": {
             "rtc":      Option(0,   type=valid_int_f0),
