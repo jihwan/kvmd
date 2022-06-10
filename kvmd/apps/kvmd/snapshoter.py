@@ -38,7 +38,7 @@ from .streamer import Streamer
 class Snapshoter:  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
-        hid: BaseHid,
+        # hid: BaseHid,
         streamer: Streamer,
 
         idle_interval: float,
@@ -52,7 +52,7 @@ class Snapshoter:  # pylint: disable=too-many-instance-attributes
         retries_delay: float,
     ) -> None:
 
-        self.__hid = hid
+        # self.__hid = hid
         self.__streamer = streamer
 
         if idle_interval or live_interval:
@@ -123,15 +123,15 @@ class Snapshoter:  # pylint: disable=too-many-instance-attributes
 
         if self.__wakeup_key:
             logger.info("Waking up using key %r ...", self.__wakeup_key)
-            self.__hid.send_key_events([
-                (self.__wakeup_key, True),
-                (self.__wakeup_key, False),
-            ])
+            # self.__hid.send_key_events([
+            #     (self.__wakeup_key, True),
+            #     (self.__wakeup_key, False),
+            # ])
 
         if self.__wakeup_move:
             logger.info("Waking up using mouse move for %d units ...", self.__wakeup_move)
-            for (to_x, to_y) in [(0, 0), (self.__wakeup_move, self.__wakeup_move), (0, 0)]:
-                self.__hid.send_mouse_move_event(to_x, to_y)
+            # for (to_x, to_y) in [(0, 0), (self.__wakeup_move, self.__wakeup_move), (0, 0)]:
+            #     self.__hid.send_mouse_move_event(to_x, to_y)
 
         if self.__online_delay:
             logger.info("Waiting %.2f seconds for online ...", self.__online_delay)
