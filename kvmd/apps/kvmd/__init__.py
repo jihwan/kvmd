@@ -89,13 +89,13 @@ def main(argv: Optional[List[str]]=None) -> None:
         user_gpio=UserGpio(config.gpio, global_config.otg),
         ocr=TesseractOcr(**config.ocr._unpack()),
 
-        hid=hid,
-        atx=get_atx_class(config.atx.type)(**config.atx._unpack(ignore=["type"])),
-        msd=get_msd_class(config.msd.type)(**msd_kwargs),
+        # hid=hid,
+        # atx=get_atx_class(config.atx.type)(**config.atx._unpack(ignore=["type"])),
+        # msd=get_msd_class(config.msd.type)(**msd_kwargs),
         streamer=streamer,
 
         snapshoter=Snapshoter(
-            hid=hid,
+            # hid=hid,
             streamer=streamer,
             **config.snapshot._unpack(),
         ),

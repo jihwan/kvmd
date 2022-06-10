@@ -148,9 +148,9 @@ class KvmdServer(HttpServer):  # pylint: disable=too-many-arguments,too-many-ins
         user_gpio: UserGpio,
         ocr: TesseractOcr,
 
-        hid: BaseHid,
-        atx: BaseAtx,
-        msd: BaseMsd,
+        # hid: BaseHid,
+        # atx: BaseAtx,
+        # msd: BaseMsd,
         streamer: Streamer,
         snapshoter: Snapshoter,
 
@@ -163,7 +163,7 @@ class KvmdServer(HttpServer):  # pylint: disable=too-many-arguments,too-many-ins
     ) -> None:
 
         self.__auth_manager = auth_manager
-        self.__hid = hid
+        # self.__hid = hid
         self.__streamer = streamer
         self.__snapshoter = snapshoter  # Not a component: No state or cleanup
         self.__user_gpio = user_gpio  # Has extra state "gpio_scheme_state"
@@ -180,14 +180,14 @@ class KvmdServer(HttpServer):  # pylint: disable=too-many-arguments,too-many-ins
             ],
             *[
                 _Component("User-GPIO",    "gpio_state",     user_gpio),
-                _Component("HID",          "hid_state",      hid),
-                _Component("ATX",          "atx_state",      atx),
-                _Component("MSD",          "msd_state",      msd),
+                # _Component("HID",          "hid_state",      hid),
+                # _Component("ATX",          "atx_state",      atx),
+                # _Component("MSD",          "msd_state",      msd),
                 _Component("Streamer",     "streamer_state", streamer),
             ],
         ]
 
-        self.__hid_api = HidApi(hid, keymap_path, ignore_keys, mouse_x_range, mouse_y_range)  # Ugly hack to get keymaps state
+        # self.__hid_api = HidApi(hid, keymap_path, ignore_keys, mouse_x_range, mouse_y_range)  # Ugly hack to get keymaps state
         self.__streamer_api = StreamerApi(streamer, ocr)  # Same hack to get ocr langs state
         self.__apis: List[object] = [
             self,
@@ -195,12 +195,12 @@ class KvmdServer(HttpServer):  # pylint: disable=too-many-arguments,too-many-ins
             InfoApi(info_manager),
             LogApi(log_reader),
             UserGpioApi(user_gpio),
-            self.__hid_api,
-            AtxApi(atx),
-            MsdApi(msd),
+            # self.__hid_api,
+            # AtxApi(atx),
+            # MsdApi(msd),
             self.__streamer_api,
-            ExportApi(info_manager, atx, user_gpio),
-            RedfishApi(info_manager, atx),
+            # ExportApi(info_manager, atx, user_gpio),
+            # RedfishApi(info_manager, atx),
         ]
 
         self.__ws_handlers: Dict[str, Callable] = {}
@@ -255,7 +255,7 @@ class KvmdServer(HttpServer):  # pylint: disable=too-many-arguments,too-many-ins
         try:
             stage1 = [
                 ("gpio_model_state", self.__user_gpio.get_model()),
-                ("hid_keymaps_state", self.__hid_api.get_keymaps()),
+                # ("hid_keymaps_state", self.__hid_api.get_keymaps()),
                 ("streamer_ocr_state", self.__streamer_api.get_ocr()),
             ]
             stage2 = [
