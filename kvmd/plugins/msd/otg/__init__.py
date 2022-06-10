@@ -176,7 +176,7 @@ class Plugin(BaseMsd):  # pylint: disable=too-many-instance-attributes
             "upload_chunk_size": Option(65536,   type=functools.partial(valid_number, min=1024)),
             "sync_chunk_size":   Option(4194304, type=functools.partial(valid_number, min=1024)),
 
-            "storage": Option("/var/lib/kvmd/msd", type=valid_abs_dir, unpack_as="storage_path"),
+            # "storage": Option("/var/lib/kvmd/msd", type=valid_abs_dir, unpack_as="storage_path"),
 
             "remount_cmd": Option([
                 "/usr/bin/sudo", "--non-interactive",
