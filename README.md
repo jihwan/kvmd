@@ -10,9 +10,11 @@ sudo pacman -S subverion
 ```
 
 PKGBUILD 파일에 depends, optdepends 설치
+ sudo pacman -S ${library file name}
 
 일부는 https://github.com/jihwan/packages/ 클론을 받아서,
 packages 하위에 것을 설치 하도록 한다.
+  makepkg -risc
 
 단, libgpiod, avrdude-svn 는 https://aur.archlinux.org/ 에서 직접 다운로드 받아서 설치 한다.
 
