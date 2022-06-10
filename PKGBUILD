@@ -59,13 +59,13 @@ depends=(
 	python-hidapi
 	python-six
 	python-pyrad
-	libgpiod
+	#libgpiod
 	freetype2
 	"v4l-utils>=1.22.1-1"
 	nginx-mainline
 	openssl
 	platformio
-	avrdude-svn
+	#avrdude-svn
 	make
 	patch
 	sudo
@@ -73,8 +73,8 @@ depends=(
 	iproute2
 	dnsmasq
 	ipmitool
-	"janus-gateway-pikvm>=0.11.2-7"
-	platform-io-access
+	#"janus-gateway-pikvm>=0.11.2-7"
+	#platform-io-access
 	"ustreamer>=5.8"
 
 	# Systemd UDEV bug
