@@ -63,7 +63,7 @@ sudo cp configs/os/sysusers.conf /usr/lib/sysusers.d/kvmd.conf
 ```commandline
 sudo vim /usr/lib/sysusers.d/raspberrypi-io-access.conf
 
-g spi - -
+g spi 가- -
 g gpio - -
 ```
 
